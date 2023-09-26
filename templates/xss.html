@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XSS example</title>
+</head>
+<body>
+{% if message %}
+    <h1>You told me: </h1>
+    <code>{{ message|safe }}</code>
+    <br><br>
+    <a href="{{ own_url }}">Back</a>
+{% else %}
+    <h1>Tell me your favorite thing: </h1>
+    <form action="{{ own_url }}" method="post">
+        <input type="text" name="message">
+        <input type="submit">
+    </form>
+    <br>
+       <a href="/">Back</a>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Forgery Example</title>
+</head>
+<body>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<script>
+    function enableSubmitIfValidDonation(donation) {
+        if (Number.parseInt(donation) > 0) {
+            document.getElementById('submit').removeAttribute('disabled');
+        }
+    }
+</script>
+
+<h1>Would you like to donate to our beautiful site?</h1><br>
+<form action="{{ own_url }}" method="post">
+    <label>
+        <input type="text" name="donation" onchange="enableSubmitIfValidDonation(this.value)">
+    </label>
+    <input id="submit" type="submit" disabled>
+</form>
+<br>
+<a href="/">Back</a>
+
+</body>
+</html>

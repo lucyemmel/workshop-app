@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SQLI example</title>
+</head>
+<body>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if plants %}
+    <h1>Found plants:</h1><br>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age (Months)</th>
+        </tr>
+        {% for plant in plants %}
+            <tr>
+                <td>{{ plant.name }}</td>
+                <td>{{ plant.age }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+    <a href="{{ own_url }}">Back</a>
+{% else %}
+    <h1>Search for your favorite plant by name: </h1><br>
+    <form action="{{ own_url }}" method="post">
+        <input type="text" name="plant">
+        <input type="submit">
+    </form>
+    <br>
+    <a href="/">Back</a>
+{% endif %}
+</body>
+</html>
