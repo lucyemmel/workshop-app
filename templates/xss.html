@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>XSS example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
 {% if message %}
-    <h1>You told me: </h1>
-    <code>{{ message|safe }}</code>
+    <h1>You told me: </h1><br>
+    <code style="font-size: large">{{ message|safe }}</code>
     <br><br>
     <a href="{{ own_url }}">Back</a>
 {% else %}
-    <h1>Tell me your favorite thing: </h1>
+    <h1>Tell me your favorite thing: </h1><br>
     <form action="{{ own_url }}" method="post">
         <input type="text" name="message">
         <input type="submit">
     </form>
     <br>
-       <a href="/">Back</a>
+    <a href="/">Back</a>
 {% endif %}
 </body>
 </html>
